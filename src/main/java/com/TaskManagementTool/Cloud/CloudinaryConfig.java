@@ -1,0 +1,40 @@
+package com.TaskManagementTool.Cloud;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.cloudinary.Cloudinary;
+
+@Configuration
+public class CloudinaryConfig {
+	
+	@Value("${cloudinary.cloud-name}")
+	private String cloudName;
+	
+	@Value("${cloudinary.api-key}")
+	private String key;
+	
+	@Value("${cloudinary.api-secret}")
+	private String secret;
+	
+	@Bean
+	public Cloudinary cloudinary() {
+		
+		Map<String, Object> config = new HashMap<>();
+		config.put("cloud-name", cloudName);
+		config.put("api-key", key);
+		config.put("api-secret", secret);
+		
+		return new Cloudinary(config);
+		
+	}
+	
+	
+	
+	
+
+}
